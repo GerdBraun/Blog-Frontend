@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const PostSingle = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
+  const [loading,setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_SERVER}/posts/${id}`, {
@@ -22,13 +24,16 @@ const PostSingle = () => {
         setPost(data);
       })
       .catch((error) => {
-        console.error("ERROR: ", error);
+        toast.error(`ERROR: ${error}`)
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [id]);
 
   return (
     <>
-      <div className="max-w-screen-lg mx-auto p-4 my-8">
+      <div className={`max-w-screen-lg mx-auto p-4 my-8 ${loading ? 'hidden' : ''}`}>
         {post ? (
           <div className="card card-compact bg-base-100 w-full shadow-xl">
             <figure className="h-96">

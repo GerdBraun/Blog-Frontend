@@ -3,6 +3,7 @@ import PostCard from "../partials/PostCard";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const [loading,setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_SERVER}/posts`, {
@@ -21,12 +22,14 @@ const Home = () => {
       })
       .catch((error) => {
         console.error("ERROR: ", error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
   return (
-    <div>
-      <ul className="max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 my-8">
+      <ul className={`max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 my-8 ${loading ? 'hidden' : ''}`}>
         <>
           {posts &&
             posts.map((post) => (
@@ -36,7 +39,6 @@ const Home = () => {
             ))}
         </>{" "}
       </ul>
-    </div>
   );
 };
 
