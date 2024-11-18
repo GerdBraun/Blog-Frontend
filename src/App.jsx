@@ -12,14 +12,20 @@ import PostSingle from "./pages/PostSingle";
 import PostAdd from "./pages/PostAdd";
 
 const router = createBrowserRouter(
-  createRoutesFromElements(<Route path="/" element={<Layout />}>
-    <Route index element={<Home />} />
-    <Route path="/posts/:id" element={<PostSingle />} />
-    <Route path="/posts/add" element={<PostAdd />} />
-    <Route path="/users/login" element={<div>login</div>} />
-    <Route path="/users/logout" element={<div>logout</div>} />
-    <Route path="*" element={<ErrorPage />} />
-  </Route>)
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path="posts">
+        <Route path=":id" element={<PostSingle />} />
+        <Route path="add" element={<PostAdd />} />
+      </Route>
+      <Route path="users">
+        <Route path="login" element={<div>login</div>} />
+        <Route path="logout" element={<div>logout</div>} />
+      </Route>
+      <Route path="*" element={<ErrorPage />} />
+    </Route>
+  )
 );
 
 const App = () => {

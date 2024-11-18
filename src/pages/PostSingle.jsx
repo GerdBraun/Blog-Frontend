@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const PostSingle = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
-  const [loading,setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_SERVER}/posts/${id}`, {
@@ -20,11 +20,10 @@ const PostSingle = () => {
         else return response.json();
       })
       .then((data) => {
-        console.log(data);
         setPost(data);
       })
       .catch((error) => {
-        toast.error(`ERROR: ${error}`)
+        toast.error(`ERROR: ${error}`);
       })
       .finally(() => {
         setLoading(false);
@@ -33,7 +32,11 @@ const PostSingle = () => {
 
   return (
     <>
-      <div className={`max-w-screen-lg mx-auto p-4 my-8 ${loading ? 'hidden' : ''}`}>
+      <div
+        className={`max-w-screen-lg mx-auto p-4 my-8 ${
+          loading ? "hidden" : ""
+        }`}
+      >
         {post ? (
           <div className="card card-compact bg-base-100 w-full shadow-xl">
             <figure className="h-96">
@@ -77,6 +80,17 @@ const PostSingle = () => {
             <span>Warning: Post not found!</span>
           </div>
         )}
+      </div>
+
+      <div
+        className={`max-w-screen-lg mx-auto p-4 my-8 flex flex-col gap-4 ${
+          loading ? "" : "hidden"
+        }`}
+      >
+        <div className="skeleton h-96 w-full"></div>
+        <div className="skeleton h-4 w-28"></div>
+        <div className="skeleton h-4 w-full"></div>
+        <div className="skeleton h-4 w-full"></div>
       </div>
     </>
   );

@@ -13,7 +13,9 @@ const PostCard = ({ post }) => {
       <div className="card-body">
         <h2 className="card-title">
           {post.title}
-          {(new Date(post.date).toDateString() === new Date().toDateString()) && <div className="badge badge-secondary">NEW</div>}
+          {new Date(post.date).toDateString() === new Date().toDateString() && (
+            <div className="badge badge-secondary">NEW</div>
+          )}
         </h2>
         <p className="text-xs">
           {new Date(post.date).toLocaleDateString()} / {post.author}
