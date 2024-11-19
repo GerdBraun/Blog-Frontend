@@ -18,6 +18,9 @@ const router = createBrowserRouter(
       <Route path="posts">
         <Route path=":id" element={<PostSingle />} />
         <Route path="add" element={<PostAdd />} />
+        <Route path="edit">
+          <Route path=":id" element={<div>edit</div>}/>
+        </Route>
       </Route>
       <Route path="users">
         <Route path="login" element={<div>login</div>} />
