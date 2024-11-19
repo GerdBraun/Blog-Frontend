@@ -61,7 +61,7 @@ const PostEdit = () => {
       })
       .then((data) => {
         toast.success("Post created successfully");
-        navigate("/");
+        navigate(`/posts/${id}`);
       })
       .catch((error) => {
         toast.error("Error: " + error.message);
