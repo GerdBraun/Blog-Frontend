@@ -21,7 +21,7 @@ const PostCard = ({ post }) => {
           {new Date(post.date).toLocaleDateString()} / {post.author}
         </p>
         <div className="card-actions justify-end">
-          <Link to={`/posts/${post.id}`} className="btn btn-primary">
+          <Link to={`/posts/${post.id}`} className="btn">
             details
           </Link>
         </div>

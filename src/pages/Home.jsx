@@ -9,7 +9,7 @@ const Home = () => {
     fetch(`${import.meta.env.VITE_API_SERVER}/posts`, {
       method: "GET",
       headers: {
-        accept: "application/json",
+        Accept: "application/json",
       },
     })
       .then((response) => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -7,6 +7,7 @@ const PostSingle = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_SERVER}/posts/${id}`, {
@@ -17,7 +18,7 @@ const PostSingle = () => {
     })
       .then((response) => {
         if (!response.ok) throw new Error(response.status);
-        else return response.json();
+        return response.json();
       })
       .then((data) => {
         setPost(data);
@@ -29,6 +30,26 @@ const PostSingle = () => {
         setLoading(false);
       });
   }, [id]);
+
+  const handleDelete = () => {
+    fetch(`${import.meta.env.VITE_API_SERVER}/posts/${id}`, {
+      method: "DELETE",
+      headers: {
+        accept: "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error(response.status);
+        else return response;
+      })
+      .then(() => {
+        toast.success(`Post deleted`);
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error(`ERROR: ${error}`);
+      });
+  };
 
   return (
     <>
@@ -49,16 +70,27 @@ const PostSingle = () => {
             <div className="card-body">
               <h2 className="card-title">
                 {post.title}
-                <div className="badge badge-secondary">NEW</div>
+                {new Date(post.date).toDateString() ===
+                  new Date().toDateString() && (
+                  <div className="badge badge-secondary">NEW</div>
+                )}
               </h2>
               <p className="text-xs">
                 {new Date(post.date).toLocaleDateString()} / {post.author}
               </p>
               <p>{post.content}</p>
-              <div className="card-actions justify-end">
-                <Link to="/" className="btn btn-primary">
+              <div className="card-actions justify-between">
+                <Link to="/" className="btn">
                   back
                 </Link>
+                <div>
+                  <Link to={`/posts/edit/${post.id}`} className="btn">
+                    edit
+                  </Link>
+                  <button className="btn" onClick={handleDelete}>
+                    delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>
