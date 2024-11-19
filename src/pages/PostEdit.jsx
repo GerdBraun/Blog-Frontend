@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const PostAdd = () => {
+const PostEdit = () => {
+  const { id } = useParams();
   const [post, setPost] = useState({
     title: "",
     content: "",
@@ -11,8 +12,29 @@ const PostAdd = () => {
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_SERVER}/posts/${id}`, {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error(response.status);
+        return response.json();
+      })
+      .then((data) => {
+        setPost(data);
+      })
+      .catch((error) => {
+        toast.error(`ERROR: ${error}`);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,10 +47,10 @@ const PostAdd = () => {
 
     const { title, content, cover, author } = post;
 
-    fetch(`${import.meta.env.VITE_API_SERVER}/posts/`, {
-      method: "POST",
+    fetch(`${import.meta.env.VITE_API_SERVER}/posts/${id}`, {
+      method: "PUT",
       headers: {
-        accept: "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ title, content, cover, author }),
@@ -66,7 +88,7 @@ const PostAdd = () => {
 
   return (
     <div className="max-w-screen-lg mx-auto p-4 my-8">
-      <h1 className="text-3xl mb-8">Add Post</h1>
+      <h1 className="text-3xl mb-8">Edit Post</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-control mb-4">
           <label>
@@ -132,4 +154,4 @@ const PostAdd = () => {
   );
 };
 
-export default PostAdd;
+export default PostEdit;

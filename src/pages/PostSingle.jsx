@@ -18,7 +18,7 @@ const PostSingle = () => {
     })
       .then((response) => {
         if (!response.ok) throw new Error(response.status);
-        else return response.json();
+        return response.json();
       })
       .then((data) => {
         setPost(data);
@@ -48,8 +48,8 @@ const PostSingle = () => {
       })
       .catch((error) => {
         toast.error(`ERROR: ${error}`);
-      })
-}
+      });
+  };
 
   return (
     <>
@@ -84,10 +84,12 @@ const PostSingle = () => {
                   back
                 </Link>
                 <div>
-                <Link to={`/posts/edit/${post.id}`} className="btn">
-                  edit
-                </Link>
-                <button className="btn" onClick={handleDelete}>delete</button>
+                  <Link to={`/posts/edit/${post.id}`} className="btn">
+                    edit
+                  </Link>
+                  <button className="btn" onClick={handleDelete}>
+                    delete
+                  </button>
                 </div>
               </div>
             </div>

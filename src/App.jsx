@@ -10,6 +10,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import PostSingle from "./pages/PostSingle";
 import PostAdd from "./pages/PostAdd";
+import PostEdit from "./pages/PostEdit";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,7 +20,7 @@ const router = createBrowserRouter(
         <Route path=":id" element={<PostSingle />} />
         <Route path="add" element={<PostAdd />} />
         <Route path="edit">
-          <Route path=":id" element={<div>edit</div>}/>
+        <Route path=":id" element={<PostEdit />} />
         </Route>
       </Route>
       <Route path="users">
