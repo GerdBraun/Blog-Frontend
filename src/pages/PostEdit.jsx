@@ -43,7 +43,6 @@ const PostEdit = () => {
       toast.warning("Please check your form");
       return;
     }
-    console.log("do submit");
 
     const { title, content, cover, author } = post;
 
@@ -60,7 +59,7 @@ const PostEdit = () => {
         return response.json();
       })
       .then((data) => {
-        toast.success("Post created successfully");
+        toast.success("Post saved successfully");
         navigate(`/posts/${id}`);
       })
       .catch((error) => {

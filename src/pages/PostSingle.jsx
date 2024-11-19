@@ -70,13 +70,13 @@ const PostSingle = () => {
             <div className="card-body">
               <h2 className="card-title">
                 {post.title}
-                {new Date(post.date).toDateString() ===
+                {new Date(post.updatedAt).toDateString() ===
                   new Date().toDateString() && (
                   <div className="badge badge-secondary">NEW</div>
                 )}
               </h2>
               <p className="text-xs">
-                {new Date(post.date).toLocaleDateString()} / {post.author}
+                {new Date(post.updatedAt).toLocaleDateString()} / {post.author}
               </p>
               <p>{post.content}</p>
               <div className="card-actions justify-between">
