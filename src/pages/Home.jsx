@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PostCard from "../partials/PostCard";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -20,7 +21,7 @@ const Home = () => {
         setPosts(data);
       })
       .catch((error) => {
-        console.error("ERROR: ", error);
+        toast.error("Error: " + error.message)
       })
       .finally(() => {
         setLoading(false);

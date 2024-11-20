@@ -59,7 +59,7 @@ const PostEdit = () => {
         return response.json();
       })
       .then((data) => {
-        toast.success("Post saved successfully");
+        toast.success(`Post "${data.title}" saved successfully`);
         navigate(`/posts/${id}`);
       })
       .catch((error) => {

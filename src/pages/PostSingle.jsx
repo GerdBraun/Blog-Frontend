@@ -31,6 +31,10 @@ const PostSingle = () => {
       });
   }, [id]);
 
+  const confirm = () => {
+    document.getElementById("confirm").showModal();
+  }
+
   const handleDelete = () => {
     fetch(`${import.meta.env.VITE_API_SERVER}/posts/${id}`, {
       method: "DELETE",
@@ -42,8 +46,8 @@ const PostSingle = () => {
         if (!response.ok) throw new Error(response.status);
         else return response;
       })
-      .then(() => {
-        toast.success(`Post deleted`);
+      .then((data) => {
+        toast.success(`Post "${data.title}" deleted`);
         navigate("/");
       })
       .catch((error) => {
@@ -59,54 +63,70 @@ const PostSingle = () => {
         }`}
       >
         {post ? (
-          <div className="card card-compact bg-base-100 w-full shadow-xl">
-            <figure className="h-96">
-              <img
-                src={post.cover || "https://placehold.co/800x450"}
-                alt={post.title}
-                className="cover w-full"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">
-                {post.title}
-                {new Date(post.updatedAt).toDateString() ===
-                  new Date().toDateString() && (
-                  <div className="badge badge-secondary">NEW</div>
-                )}
-              </h2>
-              <div
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  <img
-                    alt={`${post.User.firstName} ${post.User.lastName}`}
-                    src={post.User.avatar || "https://placehold.co/200x200"}
+<>
+            <div className="card card-compact bg-base-100 w-full shadow-xl">
+              <figure className="h-96">
+                <img
+                  src={post.cover || "https://placehold.co/800x450"}
+                  alt={post.title}
+                  className="cover w-full"
+                />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">
+                  {post.title}
+                  {new Date(post.updatedAt).toDateString() ===
+                    new Date().toDateString() && (
+                    <div className="badge badge-secondary">NEW</div>
+                  )}
+                </h2>
+                <div role="button" className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt={`${post.User.firstName} ${post.User.lastName}`}
+                      src={post.User.avatar || "https://placehold.co/200x200"}
                     />
+                  </div>
                 </div>
-              </div>
-              <p className="text-xs">
-                {new Date(post.updatedAt).toLocaleDateString()} / {post.author}
-                / {post.User.firstName} {post.User.lastName}
-              </p>
-              <p>{post.content}</p>
-              <div className="card-actions justify-between">
-                <Link to="/" className="btn">
-                  back
-                </Link>
-                <div>
-                  <Link to={`/posts/edit/${post.id}`} className="btn">
-                    edit
+                <p className="text-xs">
+                  {new Date(post.updatedAt).toLocaleDateString()} / {post.author}/{" "}
+                  {post.User.firstName} {post.User.lastName}
+                </p>
+                <p>{post.content}</p>
+                <div className="card-actions justify-between">
+                  <Link to="/" className="btn">
+                    back
                   </Link>
-                  <button className="btn" onClick={handleDelete}>
-                    delete
-                  </button>
+                  <div>
+                    <Link to={`/posts/edit/${post.id}`} className="btn">
+                      edit
+                    </Link>
+                    <button className="btn" onClick={confirm}>
+                      delete
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ) : (
+            {/* modal */}
+           <dialog id="confirm" className="modal modal-bottom sm:modal-middle">
+           <div className="modal-box">
+             <h3 className="font-bold text-lg">Delete Post</h3>
+             <p className="py-4">
+               are you sure you want to delete <strong>&quot;{post.title}&quot;</strong>?
+             </p>
+             <div className="modal-action">
+               <form method="dialog">
+                 {/* if there is a button in form, it will close the modal */}
+                 <button className="btn"
+                 onClick={handleDelete}>delete</button>
+                 <button className="btn">abort</button>
+               </form>
+             </div>
+           </div>
+         </dialog>
+  
+</>      ) : (
           <div role="alert" className="alert alert-warning">
             <svg
               xmlns="http://www.w3.org/2000/svg"
