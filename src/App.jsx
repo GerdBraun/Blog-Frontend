@@ -20,10 +20,11 @@ const router = createBrowserRouter(
         <Route path=":id" element={<PostSingle />} />
         <Route path="add" element={<PostAdd />} />
         <Route path="edit">
-        <Route path=":id" element={<PostEdit />} />
+          <Route path=":id" element={<PostEdit />} />
         </Route>
       </Route>
       <Route path="users">
+        <Route path="signup" element={<div>sign up</div>} />
         <Route path="login" element={<div>login</div>} />
         <Route path="logout" element={<div>logout</div>} />
       </Route>

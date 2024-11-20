@@ -21,7 +21,6 @@ const PostAdd = () => {
       toast.warning("Please check your form");
       return;
     }
-    console.log("do submit");
 
     const { title, content, cover, author } = post;
 
@@ -38,7 +37,7 @@ const PostAdd = () => {
         return response.json();
       })
       .then((data) => {
-        toast.success("Post created successfully");
+        toast.success(`Post "${data.title}" created successfully`);
         navigate("/");
       })
       .catch((error) => {

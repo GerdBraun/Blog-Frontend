@@ -26,16 +26,19 @@ const Header = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-            <li>
-              <NavLink to="/">home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/posts/add">add</NavLink>
-            </li>
+              <li>
+                <NavLink to="/">home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/posts/add">add</NavLink>
+              </li>
               <li>
                 <a>user-stuff</a>
                 <ul className="p-2">
-                <li>
+                  <li>
+                    <NavLink to="/users/signup">sign up</NavLink>
+                  </li>
+                  <li>
                     <NavLink to="/users/login">login</NavLink>
                   </li>
                   <li>
@@ -63,6 +66,9 @@ const Header = () => {
                 <summary>user-stuff</summary>
                 <ul className="p-2">
                   <li>
+                    <NavLink to="/users/signup">sign up</NavLink>
+                  </li>
+                  <li>
                     <NavLink to="/users/login">login</NavLink>
                   </li>
                   <li>
@@ -72,6 +78,15 @@ const Header = () => {
               </details>
             </li>
           </ul>
+          {/* TODO: change this by user */}
+          <div role="button" className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img
+                alt="Tailwind CSS Navbar component"
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+              />
+            </div>
+          </div>
         </div>
       </nav>
     </header>
