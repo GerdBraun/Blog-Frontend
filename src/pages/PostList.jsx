@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import PostCard from "../partials/PostCard";
 import { toast } from "react-toastify";
 
-const Home = () => {
+const PostList = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -60,4 +60,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default PostList;

@@ -18,14 +18,14 @@ const PostCard = ({ post }) => {
             <div className="badge badge-secondary">NEW</div>
           )}
         </h2>
-        <div role="button" className="btn btn-ghost btn-circle avatar">
+        <Link to={`/users/${post.User.id}`} className="btn btn-ghost btn-circle avatar">
           <div className="w-10 rounded-full">
             <img
               alt={`${post.User.firstName} ${post.User.lastName}`}
               src={post.User.avatar || "https://placehold.co/200x200"}
             />
           </div>
-        </div>
+        </Link>
         <p className="text-xs">
           {new Date(post.updatedAt).toLocaleDateString()} / {post.author} /{" "}
           {post.User.firstName} {post.User.lastName}

@@ -33,7 +33,7 @@ const PostSingle = () => {
 
   const confirm = () => {
     document.getElementById("confirm").showModal();
-  }
+  };
 
   const handleDelete = () => {
     fetch(`${import.meta.env.VITE_API_SERVER}/posts/${id}`, {
@@ -63,7 +63,7 @@ const PostSingle = () => {
         }`}
       >
         {post ? (
-<>
+          <>
             <div className="card card-compact bg-base-100 w-full shadow-xl">
               <figure className="h-96">
                 <img
@@ -80,17 +80,20 @@ const PostSingle = () => {
                     <div className="badge badge-secondary">NEW</div>
                   )}
                 </h2>
-                <div role="button" className="btn btn-ghost btn-circle avatar">
+                <Link
+                  to={`/users/${post.User.id}`}
+                  className="btn btn-ghost btn-circle avatar"
+                >
                   <div className="w-10 rounded-full">
                     <img
                       alt={`${post.User.firstName} ${post.User.lastName}`}
                       src={post.User.avatar || "https://placehold.co/200x200"}
                     />
                   </div>
-                </div>
+                </Link>
                 <p className="text-xs">
-                  {new Date(post.updatedAt).toLocaleDateString()} / {post.author}/{" "}
-                  {post.User.firstName} {post.User.lastName}
+                  {new Date(post.updatedAt).toLocaleDateString()} / 
+                  {post.author}/ {post.User.firstName} {post.User.lastName}
                 </p>
                 <p>{post.content}</p>
                 <div className="card-actions justify-between">
@@ -109,24 +112,26 @@ const PostSingle = () => {
               </div>
             </div>
             {/* modal */}
-           <dialog id="confirm" className="modal modal-bottom sm:modal-middle">
-           <div className="modal-box">
-             <h3 className="font-bold text-lg">Delete Post</h3>
-             <p className="py-4">
-               are you sure you want to delete <strong>&quot;{post.title}&quot;</strong>?
-             </p>
-             <div className="modal-action">
-               <form method="dialog">
-                 {/* if there is a button in form, it will close the modal */}
-                 <button className="btn"
-                 onClick={handleDelete}>delete</button>
-                 <button className="btn">abort</button>
-               </form>
-             </div>
-           </div>
-         </dialog>
-  
-</>      ) : (
+            <dialog id="confirm" className="modal modal-bottom sm:modal-middle">
+              <div className="modal-box">
+                <h3 className="font-bold text-lg">Delete Post</h3>
+                <p className="py-4">
+                  are you sure you want to delete{" "}
+                  <strong>&quot;{post.title}&quot;</strong>?
+                </p>
+                <div className="modal-action">
+                  <form method="dialog">
+                    {/* if there is a button in form, it will close the modal */}
+                    <button className="btn" onClick={handleDelete}>
+                      delete
+                    </button>
+                    <button className="btn">abort</button>
+                  </form>
+                </div>
+              </div>
+            </dialog>
+          </>
+        ) : (
           <div role="alert" className="alert alert-warning">
             <svg
               xmlns="http://www.w3.org/2000/svg"
