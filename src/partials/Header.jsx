@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <header>
-      <nav className="navbar bg-base-100">
+      <nav className="navbar bg-base-100 shadow-xl">
         <div className="flex-1">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -44,6 +44,9 @@ const Header = () => {
                   <li>
                     <NavLink to="/users/logout">logout</NavLink>
                   </li>
+                  <li>
+                    <NavLink to="/users/list">list</NavLink>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -74,7 +77,10 @@ const Header = () => {
                   <li>
                     <NavLink to="/users/logout">logout</NavLink>
                   </li>
-                </ul>
+                  <li>
+                    <NavLink to="/users/list">list</NavLink>
+                  </li>
+               </ul>
               </details>
             </li>
           </ul>
