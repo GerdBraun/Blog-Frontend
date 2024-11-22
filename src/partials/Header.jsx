@@ -49,6 +49,17 @@ const Header = () => {
                   </li>
                 </ul>
               </li>
+              <li>
+                <a>category-stuff</a>
+                <ul className="p-2">
+                  <li>
+                    <NavLink to="/categories/list">list</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/categories/add">add</NavLink>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </div>
           <NavLink to="/" className="btn btn-ghost text-xl">
@@ -81,6 +92,19 @@ const Header = () => {
                     <NavLink to="/users/list">list</NavLink>
                   </li>
                </ul>
+              </details>
+            </li>
+            <li>
+              <details>
+                <summary>category-stuff</summary>
+                <ul className="p-2">
+                  <li>
+                    <NavLink to="/categories/list">list</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/categories/add">add</NavLink>
+                  </li>
+                </ul>
               </details>
             </li>
           </ul>

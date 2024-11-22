@@ -92,10 +92,20 @@ const PostSingle = () => {
                   </div>
                 </Link>
                 <p className="text-xs">
-                  {new Date(post.updatedAt).toLocaleDateString()} / 
-                  {post.author}/ {post.User.firstName} {post.User.lastName}
+                  {new Date(post.updatedAt).toLocaleDateString()} /{post.author}
+                  / {post.User.firstName} {post.User.lastName}
                 </p>
                 <p>{post.content}</p>
+                <h3 className="text-lg">Categories:</h3>
+                <ul>
+                  {post.Categories.map((category) => (
+                    <li key={category.id}>
+                      <Link to={`/categories/${category.id}`}>
+                        {category.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
                 <div className="card-actions justify-between">
                   <Link to="/" className="btn">
                     back
