@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const UserCard = ({ user }) => {
   return (
-    <div className="card card-compact bg-base-100 w-full shadow-xl">
+    <div className="card card-compact bg-base-100 w-full h-full shadow-xl">
       <div className="card-body">
         <h2 className="card-title">
           {user.firstName} {user.lastName}

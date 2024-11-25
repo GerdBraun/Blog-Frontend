@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const UserSingle = () => {
@@ -59,6 +59,16 @@ const UserSingle = () => {
               {user.Posts.map((post) => (
                 <li key={post.id}>
                   <Link to={`/posts/${post.id}`}>{post.title} ({new Date(post.updatedAt).toLocaleDateString()})</Link>
+                </li>
+              ))}
+            </ul>
+            <h3 className="text-lg">
+              Categories by {user.firstName} {user.lastName}:
+            </h3>
+            <ul>
+              {user.Categories.map((category) => (
+                <li key={category.id}>
+                  <Link to={`/categories/${category.id}`}>{category.label}</Link>
                 </li>
               ))}
             </ul>
