@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header>
+    <header className="z-10">
       <nav className="navbar bg-base-100 shadow-xl">
         <div className="flex-1">
           <div className="dropdown">
@@ -30,7 +30,29 @@ const Header = () => {
                 <NavLink to="/">home</NavLink>
               </li>
               <li>
-                <NavLink to="/posts/add">add</NavLink>
+                <a>post-stuff</a>
+                <ul className="p-2">
+                  <li>
+                    <NavLink to="/posts/add">add post</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/img">add img</NavLink>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a>shop-stuff</a>
+                <ul className="p-2">
+                <li>
+                    <NavLink to="/shop/products">shop</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/shop/categories">categories</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/shop/carts">carts</NavLink>
+                  </li>
+                </ul>
               </li>
               <li>
                 <a>user-stuff</a>
@@ -73,10 +95,36 @@ const Header = () => {
               <NavLink to="/">home</NavLink>
             </li>
             <li>
-              <NavLink to="/posts/add">add</NavLink>
+              <details className="z-10">
+                <summary>post-stuff</summary>
+                <ul className="p-2">
+                  <li>
+                    <NavLink to="/posts/add">add post</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/img">add img</NavLink>
+                  </li>
+                </ul>
+              </details>
             </li>
             <li>
-              <details>
+              <details className="z-10">
+                <summary>shop-stuff</summary>
+                <ul className="p-2">
+                  <li>
+                    <NavLink to="/shop/products">shop</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/shop/categories">categories</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/shop/carts">carts</NavLink>
+                  </li>
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details className="z-10">
                 <summary>user-stuff</summary>
                 <ul className="p-2">
                   <li>
@@ -91,11 +139,11 @@ const Header = () => {
                   <li>
                     <NavLink to="/users/list">list</NavLink>
                   </li>
-               </ul>
+                </ul>
               </details>
             </li>
             <li>
-              <details>
+              <details className="z-10">
                 <summary>category-stuff</summary>
                 <ul className="p-2">
                   <li>
