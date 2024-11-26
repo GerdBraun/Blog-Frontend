@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -36,7 +37,7 @@ const PostEdit = () => {
       });
   }, [id]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     if (!validateForm()) {
@@ -46,28 +47,47 @@ const PostEdit = () => {
 
     const { title, content, cover, author } = post;
 
-    fetch(`${import.meta.env.VITE_API_SERVER}/posts/${id}`, {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, content, cover, author }),
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error(response.status);
-        return response.json();
-      })
-      .then((data) => {
-        toast.success(`Post "${data.title}" saved successfully`);
-        navigate(`/posts/${id}`);
-      })
-      .catch((error) => {
-        toast.error("Error: " + error.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    // fetch(`${import.meta.env.VITE_API_SERVER}/posts/${id}`, {
+    //   method: "PUT",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ title, content, cover, author }),
+    // })
+    //   .then((response) => {
+    //     if (!response.ok) throw new Error(response.status);
+    //     return response.json();
+    //   })
+    //   .then((data) => {
+    //     toast.success(`Post "${data.title}" saved successfully`);
+    //     navigate(`/posts/${id}`);
+    //   })
+    //   .catch((error) => {
+    //     toast.error("Error: " + error.message);
+    //   })
+    //   .finally(() => {
+    //     setLoading(false);
+    //   });
+
+    const formData = new FormData(e.target);
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_SERVER}/posts/${id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      toast.success(`Post "${response.title}" saved successfully`);
+      navigate(`/posts/${id}`);
+      setLoading(false);
+    } catch (error) {
+      toast.error("Error: " + error.message);
+      setLoading(false);
+    }
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -80,7 +100,7 @@ const PostEdit = () => {
     if (!post.title) newErrors.title = "Title is required";
     if (!post.content) newErrors.content = "Content is required";
     if (!post.author) newErrors.author = "Author is required";
-    if (!post.cover) newErrors.cover = "Cover is required";
+    // if (!post.cover) newErrors.cover = "Cover is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -134,11 +154,11 @@ const PostEdit = () => {
           <label>Cover</label>
           <input
             name="cover"
-            type="url"
-            className="input input-bordered w-full"
+            type="file"
+            className="file-input file-input-bordered w-full"
             placeholder="post cover"
-            value={post.cover}
-            onChange={handleChange}
+            // value={post.cover}
+            // onChange={handleChange}
             required
           />
           {errors.cover && <p className="text-red-500">{errors.cover}</p>}{" "}
@@ -149,6 +169,13 @@ const PostEdit = () => {
           </button>
         </div>
       </form>
+      <figure className="w-full">
+        <img
+          src={post.cover || "https://placehold.co/800x450"}
+          alt={post.title}
+          className="w-full"
+        />
+      </figure>
     </div>
   );
 };
