@@ -14,7 +14,7 @@ const ProductLine = ({ bscp }) => {
       </div>
       <div className="flex items-center flex-row-reverse">{bscp.amount}</div>
       <div className="flex items-center flex-row-reverse">
-        {Math.round(bscp.amount * bscp.ShopProduct.price *100)/100} €
+        {Math.round(bscp.amount * bscp.ShopProduct.price * 100) / 100} €
       </div>
     </div>
   );
