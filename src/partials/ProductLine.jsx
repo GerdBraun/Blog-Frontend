@@ -10,11 +10,11 @@ const ProductLine = ({ bscp }) => {
         </div>
       </Link>
       <div className="flex items-center flex-row-reverse">
-        {bscp.ShopProduct.price} €
+        {new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(bscp.ShopProduct.price)}
       </div>
-      <div className="flex items-center flex-row-reverse">{bscp.amount}</div>
+      <div className="flex items-center flex-row-reverse">{bscp.amount} pcs</div>
       <div className="flex items-center flex-row-reverse">
-        {Math.round(bscp.amount * bscp.ShopProduct.price * 100) / 100} €
+        {new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(bscp.amount * bscp.ShopProduct.price)}
       </div>
     </div>
   );

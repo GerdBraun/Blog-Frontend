@@ -2,8 +2,10 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useApp } from "../context/AppContext";
 
 const PostAdd = () => {
+  const { appUser } = useApp();
   const [post, setPost] = useState({
     title: "",
     content: "",
@@ -24,6 +26,7 @@ const PostAdd = () => {
     }
 
     const formData = new FormData(e.target);
+    formData.append("authorId", appUser.id);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_SERVER}/posts`,

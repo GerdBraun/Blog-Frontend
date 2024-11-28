@@ -65,7 +65,7 @@ const ShopCartSingle = () => {
               </li>
             ))}
           </ul>
-          <p className="font-bold">Sum Total: € {total}</p>
+          <p className="font-bold text-right p-2 mb-2">Sum Total: {new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(total)}</p>
             <div className="card-actions justify-end">
               <Link to={-1} className="btn">
                 back

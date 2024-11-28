@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useApp } from "../context/AppContext";
 
 const UserSingle = () => {
   const { id } = useParams();
+  const {setAppUser} = useApp();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -28,6 +30,10 @@ const UserSingle = () => {
         setLoading(false);
       });
   }, [id]);
+
+  const switchToUser = () => {
+    setAppUser(user);
+  }
   return (
     <div
       className={`max-w-screen-lg mx-auto p-4 my-8 ${loading ? "hidden" : ""}`}
@@ -75,12 +81,14 @@ const UserSingle = () => {
             <h3 className="text-lg">
               Carts by {user.firstName} {user.lastName}:
             </h3>
-            <ul>
+            <ul>{user.ShopCart && 
                 <li key={user.ShopCart.id}>
                   <Link to={`/shop/carts/${user.ShopCart.id}`}>view</Link>
                 </li>
+                }
             </ul>
             <div className="card-actions justify-end">
+              <button className="btn" onClick={switchToUser}>switch to user</button>
               <Link to={`/users/list`} className="btn">
                 back
               </Link>

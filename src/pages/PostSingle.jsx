@@ -47,7 +47,7 @@ const PostSingle = () => {
         else return response;
       })
       .then((data) => {
-        toast.success(`Post "${data.title}" deleted`);
+        toast.success(`Post deleted`);
         navigate("/");
       })
       .catch((error) => {

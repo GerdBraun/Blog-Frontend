@@ -1,6 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useApp } from "../context/AppContext";
 
 const Header = () => {
+  const { appUser } = useApp();
+
   return (
     <header className="z-10">
       <nav className="navbar bg-base-100 shadow-xl">
@@ -27,144 +30,183 @@ const Header = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <NavLink to="/">home</NavLink>
-              </li>
-              <li>
-                <a>post-stuff</a>
+                <a>Blog</a>
                 <ul className="p-2">
                   <li>
-                    <NavLink to="/posts/add">add post</NavLink>
+                    <NavLink to="/" className="text-nowrap">
+                      post list
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/img">add img</NavLink>
+                    <NavLink to="/posts/add" className="text-nowrap">
+                      post add
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/categories/list" className="text-nowrap">
+                      category list
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/categories/add" className="text-nowrap">
+                      category add
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/img" className="text-nowrap">
+                      img add *
+                    </NavLink>
                   </li>
                 </ul>
               </li>
               <li>
-                <a>shop-stuff</a>
+                <a>Shop</a>
                 <ul className="p-2">
-                <li>
-                    <NavLink to="/shop/products">shop</NavLink>
+                  <li>
+                    <NavLink to="/shop/products" className="text-nowrap">
+                      product list
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/shop/categories">categories</NavLink>
+                    <NavLink to="/shop/categories" className="text-nowrap">
+                      category list
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/shop/carts">carts</NavLink>
+                    <NavLink to="/shop/carts" className="text-nowrap">
+                      cart list
+                    </NavLink>
                   </li>
                 </ul>
               </li>
               <li>
-                <a>user-stuff</a>
+                <a>User</a>
                 <ul className="p-2">
                   <li>
-                    <NavLink to="/users/signup">sign up</NavLink>
+                    <NavLink to="/users/signup" className="text-nowrap">
+                      sign up
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/users/login">login</NavLink>
+                    <NavLink to="/users/login" className="text-nowrap">
+                      login
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/users/logout">logout</NavLink>
+                    <NavLink to="/users/logout" className="text-nowrap">
+                      logout
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/users/list">list</NavLink>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>category-stuff</a>
-                <ul className="p-2">
-                  <li>
-                    <NavLink to="/categories/list">list</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/categories/add">add</NavLink>
+                    <NavLink to="/users/list" className="text-nowrap">
+                      list
+                    </NavLink>
                   </li>
                 </ul>
               </li>
             </ul>
           </div>
           <NavLink to="/" className="btn btn-ghost text-xl">
-            MyBlog
+            MyFrontend
           </NavLink>
         </div>
 
         <div className="flex-none hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <NavLink to="/">home</NavLink>
-            </li>
-            <li>
               <details className="z-10">
-                <summary>post-stuff</summary>
+                <summary>Blog</summary>
                 <ul className="p-2">
                   <li>
-                    <NavLink to="/posts/add">add post</NavLink>
+                    <NavLink to="/" className="text-nowrap">
+                      post list
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/img">add img</NavLink>
+                    <NavLink to="/posts/add" className="text-nowrap">
+                      post add
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/categories/list" className="text-nowrap">
+                      category list
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/categories/add" className="text-nowrap">
+                      category add
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/img" className="text-nowrap">
+                      img add *
+                    </NavLink>
                   </li>
                 </ul>
               </details>
             </li>
             <li>
               <details className="z-10">
-                <summary>shop-stuff</summary>
+                <summary>Shop</summary>
                 <ul className="p-2">
                   <li>
-                    <NavLink to="/shop/products">shop</NavLink>
+                    <NavLink to="/shop/products" className="text-nowrap">
+                      product list
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/shop/categories">categories</NavLink>
+                    <NavLink to="/shop/categories" className="text-nowrap">
+                      category list
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/shop/carts">carts</NavLink>
+                    <NavLink to="/shop/carts" className="text-nowrap">
+                      cart list
+                    </NavLink>
                   </li>
                 </ul>
               </details>
             </li>
             <li>
               <details className="z-10">
-                <summary>user-stuff</summary>
+                <summary>User</summary>
                 <ul className="p-2">
                   <li>
-                    <NavLink to="/users/signup">sign up</NavLink>
+                    <NavLink to="/users/signup" className="text-nowrap">
+                      sign up
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/users/login">login</NavLink>
+                    <NavLink to="/users/login" className="text-nowrap">
+                      login
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/users/logout">logout</NavLink>
+                    <NavLink to="/users/logout" className="text-nowrap">
+                      logout
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/users/list">list</NavLink>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <details className="z-10">
-                <summary>category-stuff</summary>
-                <ul className="p-2">
-                  <li>
-                    <NavLink to="/categories/list">list</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/categories/add">add</NavLink>
+                    <NavLink to="/users/list" className="text-nowrap">
+                      list
+                    </NavLink>
                   </li>
                 </ul>
               </details>
             </li>
           </ul>
-          {/* TODO: change this by user */}
-          <div role="button" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
+          {appUser && (
+            <div role="button" className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <Link to={`/users/${appUser.id}`}>
+                  <img
+                    alt={`${appUser.firstName} ${appUser.lastName}`}
+                    src={appUser.avatar}
+                  />
+                </Link>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </nav>
     </header>
