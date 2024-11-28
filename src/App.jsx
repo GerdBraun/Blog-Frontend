@@ -14,6 +14,8 @@ import PostEdit from "./pages/PostEdit";
 import UserList from "./pages/UserList";
 import UserSingle from "./pages/UserSingle";
 import ImageUpload from "./pages/ImageUpload";
+import ShopCartList from "./pages/ShopCartList";
+import ShopCartSingle from "./pages/ShopCartSingle";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,8 +33,8 @@ const router = createBrowserRouter(
         <Route path="products/:id" element={<div>shop-product-single</div>} />
         <Route path="categories" element={<div>shop-categories</div>} />
         <Route path="categories/:id" element={<div>shop-category-single</div>} />
-        <Route path="carts" element={<div>shop-carts</div>} />
-        <Route path="carts/:id" element={<div>shop-cart-single</div>} />
+        <Route path="carts" element={<ShopCartList />} />
+        <Route path="carts/:id" element={<ShopCartSingle />} />
       </Route>
       <Route path="users">
         <Route path="signup" element={<div>sign up</div>} />

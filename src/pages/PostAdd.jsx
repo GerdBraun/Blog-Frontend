@@ -23,50 +23,24 @@ const PostAdd = () => {
       return;
     }
 
-    const { title, content, cover, author } = post;
-
-    // fetch(`${import.meta.env.VITE_API_SERVER}/posts/`, {
-    //   method: "POST",
-    //   headers: {
-    //     accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ title, content, cover, author }),
-    // })
-    //   .then((response) => {
-    //     if (!response.ok) throw new Error(response.status);
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     toast.success(`Post "${data.title}" created successfully`);
-    //     navigate("/");
-    //   })
-    //   .catch((error) => {
-    //     toast.error("Error: " + error.message);
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
-
-      const formData = new FormData(e.target);
-      try {
-        const response = await axios.post(
-          `${import.meta.env.VITE_API_SERVER}/posts`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        toast.success(`Post "${response.title}" saved successfully`);
-        navigate("/");
-        setLoading(false);
-      } catch (error) {
-        toast.error("Error: " + error.message);
-        setLoading(false);
-      }
-  
+    const formData = new FormData(e.target);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_SERVER}/posts`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      toast.success(`Post "${response.title}" saved successfully`);
+      navigate("/");
+      setLoading(false);
+    } catch (error) {
+      toast.error("Error: " + error.message);
+      setLoading(false);
+    }
   };
   const handleChange = (e) => {
     const { name, value } = e.target;

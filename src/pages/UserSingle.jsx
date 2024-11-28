@@ -72,6 +72,14 @@ const UserSingle = () => {
                 </li>
               ))}
             </ul>
+            <h3 className="text-lg">
+              Carts by {user.firstName} {user.lastName}:
+            </h3>
+            <ul>
+                <li key={user.ShopCart.id}>
+                  <Link to={`/shop/carts/${user.ShopCart.id}`}>view</Link>
+                </li>
+            </ul>
             <div className="card-actions justify-end">
               <Link to={`/users/list`} className="btn">
                 back
