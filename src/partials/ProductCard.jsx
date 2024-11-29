@@ -3,10 +3,9 @@ import { useApp } from "../context/AppContext";
 import { toast } from "react-toastify";
 
 const ProductCard = ({ product }) => {
-  const { appUser } = useApp();
+  const { appUser,loadUserById } = useApp();
 
   const handleAddToCart = async () => {
-    // TODO: make it work
     console.log(product);
     console.log(appUser);
 
@@ -24,7 +23,8 @@ const ProductCard = ({ product }) => {
           },
         }
       );
-      toast.success(`Product "${product.name}" added to cart`);
+      toast.success(`Product "${product.name}" added to ${appUser.firstName}'s cart`);
+      loadUserById(appUser.id)
     } catch (error) {
       toast.error("Error: " + error.message);
     }

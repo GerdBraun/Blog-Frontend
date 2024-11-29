@@ -5,7 +5,7 @@ import { useApp } from "../context/AppContext";
 
 const UserSingle = () => {
   const { id } = useParams();
-  const {setAppUser} = useApp();
+  const {setAppUserId} = useApp();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -32,7 +32,7 @@ const UserSingle = () => {
   }, [id]);
 
   const switchToUser = () => {
-    setAppUser(user);
+    setAppUserId(user.id);
   }
   return (
     <div

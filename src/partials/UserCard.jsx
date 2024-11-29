@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import { useApp } from "../context/AppContext";
 
 const UserCard = ({ user }) => {
+  const {setAppUserId } = useApp();
+  const switchToUser = () => {
+    setAppUserId(user.id);
+  }
+
   return (
     <div className="card card-compact bg-base-100 w-full h-full shadow-xl">
       <div className="card-body">
@@ -20,6 +26,9 @@ const UserCard = ({ user }) => {
           <a href={`mailto:${user.email}`}>{user.email}</a>
         </p>
         <div className="card-actions justify-end">
+          <button className="btn" onClick={switchToUser}>
+            switch to user
+          </button>
           <Link to={`/users/${user.id}`} className="btn">
             details
           </Link>

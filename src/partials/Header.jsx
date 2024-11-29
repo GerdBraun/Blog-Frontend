@@ -1,9 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import { useApp } from "../context/AppContext";
+import CartIcon from "./CartIcon";
 
 const Header = () => {
   const { appUser } = useApp();
-
   return (
     <header className="z-10">
       <nav className="navbar bg-base-100 shadow-xl">
@@ -37,26 +37,30 @@ const Header = () => {
                       post list
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink to="/posts/add" className="text-nowrap">
-                      post add
-                    </NavLink>
-                  </li>
+                  {appUser && (
+                    <li>
+                      <NavLink to="/posts/add" className="text-nowrap">
+                        post add
+                      </NavLink>
+                    </li>
+                  )}
                   <li>
                     <NavLink to="/categories/list" className="text-nowrap">
                       category list
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink to="/categories/add" className="text-nowrap">
-                      category add
-                    </NavLink>
-                  </li>
-                  <li>
+                  {appUser && (
+                    <li>
+                      <NavLink to="/categories/add" className="text-nowrap">
+                        category add
+                      </NavLink>
+                    </li>
+                  )}
+                  {/* <li>
                     <NavLink to="/img" className="text-nowrap">
                       img add *
                     </NavLink>
-                  </li>
+                  </li> */}
                 </ul>
               </li>
               <li>
@@ -88,7 +92,7 @@ const Header = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/users/login" className="text-nowrap">
+                    <NavLink to="/users/list" className="text-nowrap">
                       login
                     </NavLink>
                   </li>
@@ -97,11 +101,11 @@ const Header = () => {
                       logout
                     </NavLink>
                   </li>
-                  <li>
+                  {/* <li>
                     <NavLink to="/users/list" className="text-nowrap">
                       list
                     </NavLink>
-                  </li>
+                  </li> */}
                 </ul>
               </li>
             </ul>
@@ -122,26 +126,30 @@ const Header = () => {
                       post list
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink to="/posts/add" className="text-nowrap">
-                      post add
-                    </NavLink>
-                  </li>
+                  {appUser && (
+                    <li>
+                      <NavLink to="/posts/add" className="text-nowrap">
+                        post add
+                      </NavLink>
+                    </li>
+                  )}
                   <li>
                     <NavLink to="/categories/list" className="text-nowrap">
                       category list
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink to="/categories/add" className="text-nowrap">
-                      category add
-                    </NavLink>
-                  </li>
-                  <li>
+                  {appUser && (
+                    <li>
+                      <NavLink to="/categories/add" className="text-nowrap">
+                        category add
+                      </NavLink>
+                    </li>
+                  )}
+                  {/* <li>
                     <NavLink to="/img" className="text-nowrap">
                       img add *
                     </NavLink>
-                  </li>
+                  </li> */}
                 </ul>
               </details>
             </li>
@@ -177,7 +185,7 @@ const Header = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/users/login" className="text-nowrap">
+                    <NavLink to="/users/list" className="text-nowrap">
                       login
                     </NavLink>
                   </li>
@@ -186,26 +194,29 @@ const Header = () => {
                       logout
                     </NavLink>
                   </li>
-                  <li>
+                  {/* <li>
                     <NavLink to="/users/list" className="text-nowrap">
                       list
                     </NavLink>
-                  </li>
+                  </li> */}
                 </ul>
               </details>
             </li>
           </ul>
           {appUser && (
-            <div role="button" className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <Link to={`/users/${appUser.id}`}>
-                  <img
-                    alt={`${appUser.firstName} ${appUser.lastName}`}
-                    src={appUser.avatar}
-                  />
-                </Link>
+            <>
+              {appUser.ShopCart && <CartIcon cart={appUser.ShopCart} />}
+              <div role="button" className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <Link to={`/users/${appUser.id}`}>
+                    <img
+                      alt={`${appUser.firstName} ${appUser.lastName}`}
+                      src={appUser.avatar}
+                    />
+                  </Link>
+                </div>
               </div>
-            </div>
+            </>
           )}
         </div>
       </nav>

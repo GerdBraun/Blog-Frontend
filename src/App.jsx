@@ -17,6 +17,7 @@ import ImageUpload from "./pages/ImageUpload";
 import ShopCartList from "./pages/ShopCartList";
 import ShopCartSingle from "./pages/ShopCartSingle";
 import ShopProductList from "./pages/ShopProductList";
+import Logout from "./pages/Logout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,7 +41,7 @@ const router = createBrowserRouter(
       <Route path="users">
         <Route path="signup" element={<div>sign up</div>} />
         <Route path="login" element={<div>login</div>} />
-        <Route path="logout" element={<div>logout</div>} />
+        <Route path="logout" element={<Logout />} />
         <Route path="list" element={<UserList />} />
         <Route path=":id" element={<UserSingle />} />
       </Route>
