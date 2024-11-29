@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const ProductLine = ({ bscp }) => {
+const ProductLine = ({ bscp, updateCart }) => {
+  const [amount, setAmount] = useState(bscp.amount);
+  const handleUpdate = () => {
+    updateCart(bscp.ShopProduct.id, amount);
+  };
   return (
     <div className="grid grid-cols-4 p-2">
       <Link to={`/shop/products/${bscp.ShopProduct.id}`}>
@@ -16,28 +21,32 @@ const ProductLine = ({ bscp }) => {
         }).format(bscp.ShopProduct.price)}
       </div>
       <div className="flex items-center flex-row-reverse">
-        {bscp.amount} pcs
+        <button
+          className="btn btn-sm"
+          onClick={() => setAmount((prev) => prev + 1)}
+        >
+          +
+        </button>
+        <span className="mx-2 w-10 text-center">{amount}</span>
+        <button
+          className="btn btn-sm"
+          onClick={() =>
+            setAmount((prev) => {
+              return (prev > 0) ? prev - 1 : 0;
+            })
+          }
+        >
+          -
+        </button>
       </div>
       <div className="flex items-center flex-row-reverse">
-        <button className="ml-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 shrink-0 stroke-current"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
+        <button className="btn btn-sm ml-2" onClick={handleUpdate}>
+            ok
         </button>
         {new Intl.NumberFormat("de-DE", {
           style: "currency",
           currency: "EUR",
-        }).format(bscp.amount * bscp.ShopProduct.price)}
+        }).format(amount * bscp.ShopProduct.price)}
       </div>
     </div>
   );

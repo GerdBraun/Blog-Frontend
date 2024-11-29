@@ -6,11 +6,8 @@ const ProductCard = ({ product }) => {
   const { appUser,loadUserById } = useApp();
 
   const handleAddToCart = async () => {
-    console.log(product);
-    console.log(appUser);
-
     try {
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API_SERVER}/shop/carts`,
         {
           userId: appUser.id,
@@ -23,7 +20,7 @@ const ProductCard = ({ product }) => {
           },
         }
       );
-      toast.success(`Product "${product.name}" added to ${appUser.firstName}'s cart`);
+      toast.success(`"${product.name}" added to ${appUser.firstName}'s cart`);
       loadUserById(appUser.id)
     } catch (error) {
       toast.error("Error: " + error.message);
