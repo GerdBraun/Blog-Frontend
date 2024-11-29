@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useApp } from "../context/AppContext";
 
 const PostSingle = () => {
   const { id } = useParams();
+  const { appUser } = useApp();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -47,7 +49,7 @@ const PostSingle = () => {
         else return response;
       })
       .then((data) => {
-        toast.success(`Post "${data.title}" deleted`);
+        toast.success(`Post deleted`);
         navigate("/");
       })
       .catch((error) => {
@@ -110,14 +112,17 @@ const PostSingle = () => {
                   <Link to="/" className="btn">
                     back
                   </Link>
-                  <div>
-                    <Link to={`/posts/edit/${post.id}`} className="btn">
-                      edit
-                    </Link>
-                    <button className="btn" onClick={confirm}>
-                      delete
-                    </button>
-                  </div>
+                  {appUser &&
+                    (appUser.id === post.User.id || appUser.isAdmin) && (
+                      <div>
+                        <Link to={`/posts/edit/${post.id}`} className="btn">
+                          edit
+                        </Link>
+                        <button className="btn" onClick={confirm}>
+                          delete
+                        </button>
+                      </div>
+                    )}
                 </div>
               </div>
             </div>

@@ -14,6 +14,10 @@ import PostEdit from "./pages/PostEdit";
 import UserList from "./pages/UserList";
 import UserSingle from "./pages/UserSingle";
 import ImageUpload from "./pages/ImageUpload";
+import ShopCartList from "./pages/ShopCartList";
+import ShopCartSingle from "./pages/ShopCartSingle";
+import ShopProductList from "./pages/ShopProductList";
+import Logout from "./pages/Logout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,17 +31,17 @@ const router = createBrowserRouter(
         </Route>
       </Route>
       <Route path="shop">
-        <Route path="products" element={<div>shop-products</div>} />
+        <Route path="products" element={<ShopProductList />} />
         <Route path="products/:id" element={<div>shop-product-single</div>} />
         <Route path="categories" element={<div>shop-categories</div>} />
         <Route path="categories/:id" element={<div>shop-category-single</div>} />
-        <Route path="carts" element={<div>shop-carts</div>} />
-        <Route path="carts/:id" element={<div>shop-cart-single</div>} />
+        <Route path="carts" element={<ShopCartList />} />
+        <Route path="carts/:id" element={<ShopCartSingle />} />
       </Route>
       <Route path="users">
         <Route path="signup" element={<div>sign up</div>} />
         <Route path="login" element={<div>login</div>} />
-        <Route path="logout" element={<div>logout</div>} />
+        <Route path="logout" element={<Logout />} />
         <Route path="list" element={<UserList />} />
         <Route path=":id" element={<UserSingle />} />
       </Route>

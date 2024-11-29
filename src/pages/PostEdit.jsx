@@ -45,31 +45,6 @@ const PostEdit = () => {
       return;
     }
 
-    const { title, content, cover, author } = post;
-
-    // fetch(`${import.meta.env.VITE_API_SERVER}/posts/${id}`, {
-    //   method: "PUT",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ title, content, cover, author }),
-    // })
-    //   .then((response) => {
-    //     if (!response.ok) throw new Error(response.status);
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     toast.success(`Post "${data.title}" saved successfully`);
-    //     navigate(`/posts/${id}`);
-    //   })
-    //   .catch((error) => {
-    //     toast.error("Error: " + error.message);
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
-
     const formData = new FormData(e.target);
     try {
       const response = await axios.put(
