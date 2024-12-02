@@ -3,19 +3,16 @@ import { useApp } from "../context/AppContext";
 import { toast } from "react-toastify";
 
 const ProductCard = ({ product }) => {
-  const { appUser,loadUserById } = useApp();
+  const { appUser, loadUserById } = useApp();
 
   const handleAddToCart = async () => {
-    console.log(product);
-    console.log(appUser);
-
     try {
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API_SERVER}/shop/carts`,
         {
           userId: appUser.id,
           productId: product.id,
-          amount:1
+          amount: 1,
         },
         {
           headers: {
@@ -23,8 +20,8 @@ const ProductCard = ({ product }) => {
           },
         }
       );
-      toast.success(`Product "${product.name}" added to ${appUser.firstName}'s cart`);
-      loadUserById(appUser.id)
+      toast.success(`"${product.name}" added to ${appUser.firstName}'s cart`);
+      loadUserById(appUser.id);
     } catch (error) {
       toast.error("Error: " + error.message);
     }
@@ -48,9 +45,11 @@ const ProductCard = ({ product }) => {
           {/* <Link to={`/shop/products/${product.id}`} className="btn">
             details
           </Link> */}
-          <button className="btn" onClick={handleAddToCart}>
-            add to cart
-          </button>
+          {appUser && (
+            <button className="btn" onClick={handleAddToCart}>
+              add to cart
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -167,11 +167,13 @@ const Header = () => {
                       category list
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink to="/shop/carts" className="text-nowrap">
-                      cart list
-                    </NavLink>
-                  </li>
+                  {appUser && appUser.isAdmin && (
+                    <li>
+                      <NavLink to="/shop/carts" className="text-nowrap">
+                        cart list
+                      </NavLink>
+                    </li>
+                  )}
                 </ul>
               </details>
             </li>
