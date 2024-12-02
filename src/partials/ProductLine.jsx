@@ -23,7 +23,11 @@ const ProductLine = ({ bscp, updateCart }) => {
       <div className="flex items-center flex-row-reverse">
         <button
           className="btn btn-sm"
-          onClick={() => setAmount((prev) => prev + 1)}
+          onClick={() =>
+            setAmount((prev) => {
+              return prev + 1;
+            })
+          }
         >
           +
         </button>
@@ -32,7 +36,7 @@ const ProductLine = ({ bscp, updateCart }) => {
           className="btn btn-sm"
           onClick={() =>
             setAmount((prev) => {
-              return (prev > 0) ? prev - 1 : 0;
+              return prev > 0 ? prev - 1 : 0;
             })
           }
         >
@@ -41,7 +45,7 @@ const ProductLine = ({ bscp, updateCart }) => {
       </div>
       <div className="flex items-center flex-row-reverse">
         <button className="btn btn-sm ml-2" onClick={handleUpdate}>
-            ok
+          ok
         </button>
         {new Intl.NumberFormat("de-DE", {
           style: "currency",

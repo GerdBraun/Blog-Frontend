@@ -31,6 +31,9 @@ const CartCard = ({ cart }) => {
           <p>
             Owner: {cart.User.firstName} {cart.User.lastName}
           </p>
+          <p>
+            Last updated at: {new Date(cart.updatedAt).toLocaleDateString()}
+          </p>
           <h3 className="text-lg">Orders</h3>
           <ul>
             {cart.BridgeShopCartProducts.map((bscp) => (
